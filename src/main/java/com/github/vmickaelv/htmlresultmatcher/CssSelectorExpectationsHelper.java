@@ -183,4 +183,23 @@ public class CssSelectorExpectationsHelper {
 		assertEquals("XPath " + this.expression, expectedValue, Boolean.parseBoolean(element.text()));
 	}
 
+
+
+
+
+
+
+
+
+
+	/**
+	 * Apply the XPath expression and assert the resulting content as a String.
+	 * @throws Exception if content parsing or expression evaluation fails
+	 */
+	public void assertAttribute(byte[] content, String encoding, String attributeName, String expectedValue) throws Exception {
+		Document document = parseHtmlByteArray(content, encoding);
+		Element element = retrieveUniqueElement(document);
+		assertEquals("XPath " + this.expression, expectedValue, element.attr(attributeName));
+	}
+
 }

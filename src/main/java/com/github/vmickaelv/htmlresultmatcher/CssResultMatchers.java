@@ -190,4 +190,17 @@ public class CssResultMatchers {
         };
     }
 
+    /**
+     * Evaluate the XPath and assert the {@link Boolean} value found.
+     */
+    public ResultMatcher attribute(final String name, final String value) {
+        return new ResultMatcher() {
+            @Override
+            public void match(MvcResult result) throws Exception {
+                MockHttpServletResponse response = result.getResponse();
+                cssSelectorExpectationsHelper.assertAttribute(response.getContentAsByteArray(), getDefinedEncoding(response), name, value);
+            }
+        };
+    }
+
 }
