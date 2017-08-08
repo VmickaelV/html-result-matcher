@@ -203,4 +203,14 @@ public class CssResultMatchers {
         };
     }
 
+    public ResultMatcher attribute(final String name, final long value) {
+        return new ResultMatcher() {
+            @Override
+            public void match(MvcResult result) throws Exception {
+                MockHttpServletResponse response = result.getResponse();
+                cssSelectorExpectationsHelper.assertAttribute(response.getContentAsByteArray(), getDefinedEncoding(response), name, String.valueOf(value));
+            }
+        };
+    }
+
 }
